@@ -4,6 +4,7 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class BeanUtils {
 
@@ -19,4 +20,27 @@ public class BeanUtils {
         }
     }
 
+    public static <T> T instantiateByReflection(Class<T> clz, Constructor<T> ctr, Object[] args) {
+        if (ctr == null) {
+            try {
+                return clz.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            return null;
+        } else {
+            try {
+                return ctr.newInstance(args);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 }

@@ -69,12 +69,12 @@ public class BeanFactoryImpl implements BeanFactory{
             Constructor constructor = clz.getConstructor(constructorArgTypes);
             return BeanUtils.instanceByCglib(clz, constructor, objects.toArray());
         } else {
-            return BeanUtils.instanceByCglib(clz, null, null);
+            return BeanUtils.instantiateByReflection(clz, null, null);
         }
     }
 
     private void populatebean(Object bean) throws Exception {
-        Field[] fields = bean.getClass().getSuperclass().getDeclaredFields();
+        Field[] fields = bean.getClass().getDeclaredFields();
         if (fields != null && fields.length > 0) {
             for (Field field : fields) {
                 String beanName = field.getName();
