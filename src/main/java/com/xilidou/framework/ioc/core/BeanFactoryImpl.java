@@ -67,7 +67,7 @@ public class BeanFactoryImpl implements BeanFactory{
             }
             Class[] constructorArgTypes = objects.stream().map(it -> it.getClass()).collect(Collectors.toList()).toArray(new Class[]{});
             Constructor constructor = clz.getConstructor(constructorArgTypes);
-            return BeanUtils.instanceByCglib(clz, constructor, objects.toArray());
+            return BeanUtils.instantiateByReflection(clz, constructor, objects.toArray());
         } else {
             return BeanUtils.instantiateByReflection(clz, null, null);
         }
