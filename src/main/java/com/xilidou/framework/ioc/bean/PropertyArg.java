@@ -11,4 +11,5 @@ public class PropertyArg {
 
     private String typeName;
 
+    private String ref;
 }
