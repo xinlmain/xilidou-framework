@@ -1,5 +1,8 @@
 package com.xilidou.framework.ioc.entity;
 
+import lombok.Data;
+
+@Data
 public class Robot {
 
     private Hand hand;
